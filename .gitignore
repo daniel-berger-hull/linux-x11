@@ -1,0 +1,14 @@
+**/bin/
+**/obj/
+**/build/
+
+**/CMakeFiles/
+**/CMakeFiles/**/*.*
+
+**/build/**/*.*
+***/CMakeCache.txt
+***/Makefile
+***/cmake_install.cmake
+
+
+
