@@ -1,66 +1,91 @@
-/*
-  Very simple example of an X11 Window responding to the user key events
-  Will close the window if Escape key is pressed
-*/
-
 #include <X11/Xlib.h>
-#include <cstdio>
+#include <X11/Xutil.h>
+#include <X11/Xos.h>
 
+#include <stdio.h>
+#include <stdlib.h>
 
+Display *dis;
+int screen;
+Window win;
+GC gc;
+unsigned long black, white, red, blue;
 
-const int WIN_X_POS     = 50;
-const int WIN_Y_POS     = 50;
-const int WIN_WIDTH     = 200;
-const int WIN_HEIGHT    = 100;
-const int WIN_BORDER    = 1;
+void init();
+void close();
+void draw();
+unsigned long RGB(int r, int g, int b);
 
-const int ESCAPE_KEY    = 9;
+struct coord {
+ int x, y;
+} dot;
 
+int main() {
 
+    init();
+    XEvent event;
+    KeySym key;
+    char text[255];
 
-int main()
-{
-
-  Display *d = XOpenDisplay(NULL);
-  if (d == NULL)
-  {
-     printf("Unable to build display!\n");
-     return -1;
-  }
-
-  int s = DefaultScreen(d);
-
-  Window w = XCreateSimpleWindow(d,
-                                 RootWindow(d,s), WIN_X_POS, WIN_Y_POS ,
-                                 WIN_WIDTH, WIN_HEIGHT,
-                                 WIN_BORDER,
-                                 BlackPixel(d,s), WhitePixel(d,s));
-
-  XSelectInput(d,w,KeyPressMask);
-
-  XMapWindow(d,w);
-
-  XEvent e;
-
-  while (1)
-  {
-    if ( XPending(d) )
+    while (1)
     {
-          XNextEvent(d,&e);
-          printf("EVENT 2: Type is %d , Key Code is %d\n", e.type,e.xkey.keycode);
+        XNextEvent(dis, &event);
+        if(event.type==Expose && event.xexpose.count==0) {
+            draw();
+        }
 
-          if (e.type == KeyPress && e.xkey.keycode == ESCAPE_KEY)
-          {
-            break;
-          }
+        if(event.type==KeyPress && XLookupString(&event.xkey, text, 255, &key,0)==1) {
+            if(text[0]=='q') {
+                close();
+            }
+            _X_ATTRIBUTE_PRINTF("You pressed the %c key!\n",text[0]);
+        }
 
-     }
-   }
+        if(event.type==ButtonPress) {
+            int x=event.xbutton.x, y=event.xbutton.y;
+            XSetForeground(dis,gc,red);
+            XDrawLine(dis,win,gc,dot.x,dot.y,x,y);
+            XSetForeground(dis,gc,blue);
+            strcpy(text,"Hello World");
+            XDrawString(dis,win,gc,x,y,text,strlen(text));
+            dot.x=x;dot.y=y;
+        }
+    }
 
+    return 0;
+}
 
-  printf("Exit!\n");
+void init() {
+ dot.x=100;dot.y=100;
+ dis=XOpenDisplay((char *)0);
 
-  XCloseDisplay(d);
+ screen=DefaultScreen(dis);
+ black=BlackPixel(dis, screen);
+ white=WhitePixel(dis, screen);
+ red=RGB(255,0,0);
+ blue=(0,0,255);
 
-  return 0;
+ win=XCreateSimpleWindow(dis, DefaultRootWindow(dis), 0, 0, 300, 300, 5, white, black);
+ XSetStandardProperties(dis, win, "Howdy", "Hi", None, NULL, 0, NULL);
+
+ XSelectInput(dis, win, ExposureMask | ButtonPressMask | KeyPressMask);
+ gc=XCreateGC(dis, win, 0,0);
+
+ XSetBackground(dis,gc,white);
+ XSetForeground(dis,gc,black);
+ XClearWindow(dis, win);
+
+ XMapRaised(dis, win);
+}
+void close() {
+ XFreeGC(dis, gc);
+ XDestroyWindow(dis, win);
+ XCloseDisplay(dis);
+ exit(0);
+}
+void draw() {
+ XClearWindow(dis, win);
+}
+unsigned long RGB(int r, int g, int b) {
+    return b + (g<<8) + (r<<16);
 }
