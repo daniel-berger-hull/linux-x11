@@ -4,6 +4,6 @@ project(x11-mouseclick)
 
 find_package(X11)
 
-add_executable(x11-window mouseclick.cpp)
+add_executable(x11-mouseclick mouseclick.cpp)
 
-target_link_libraries(x11-window ${X11_LIBRARIES})
+target_link_libraries(x11-mouseclick ${X11_LIBRARIES})
