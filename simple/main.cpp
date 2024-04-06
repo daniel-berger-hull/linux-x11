@@ -18,7 +18,6 @@ const int ESCAPE_KEY    = 9;
 
 
 
-
 int main()
 {
 
@@ -41,22 +40,22 @@ int main()
 
   XMapWindow(d,w);
 
-
   XEvent e;
 
   while (1)
   {
     if ( XPending(d) )
     {
-      XNextEvent(d,&e);
-      printf("EVENT: Type is %d , Key Code is %d\n", e.type,e.xkey.keycode);
+          XNextEvent(d,&e);
+          printf("EVENT 2: Type is %d , Key Code is %d\n", e.type,e.xkey.keycode);
 
-      if (e.type == KeyPress && e.xkey.keycode == ESCAPE_KEY)
-      {
-        break;
-      }
-    }
-  }
+          if (e.type == KeyPress && e.xkey.keycode == ESCAPE_KEY)
+          {
+            break;
+          }
+
+     }
+   }
 
 
   printf("Exit!\n");
