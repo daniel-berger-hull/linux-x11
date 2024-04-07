@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1712499792 source:/home/dxb160/data/workspaces/cdev/linux-x11/draw-screen/CodeBlocksProject/main.cpp
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+
