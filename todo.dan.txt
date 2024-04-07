@@ -1,0 +1,14 @@
+April 6
+=======
+  Completed a simple mouse event handling on X11 windows. the appropriate mask has to be provided to the method 'XSelectInput' to work.
+  
+  Next: The Expose event appears to way to be to redraw a screen (otherwise, it looks like I will continue to have segmentation fault problem)
+        Continue to study the project in the folder 'drawing' as it draws line and text correctly with no exception.
+
+    The Video here is where the code come from: https://www.youtube.com/watch?v=qZmJwk2xrJ0
+  
+April 7
+=======
+
+  Modified draw-screen to draw red line and write text on Mouse click.
+
