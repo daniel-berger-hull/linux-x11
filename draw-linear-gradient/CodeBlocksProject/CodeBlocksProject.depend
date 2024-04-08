@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1712499792 source:/home/dxb160/data/workspaces/cdev/linux-x11/draw-screen/CodeBlocksProject/main.cpp
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+
+1712600917 source:/home/dxb160/data/workspaces/cdev/linux-x11/draw-screen2/draw-screen2.cpp
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+
+1712604468 source:/home/dxb160/data/workspaces/cdev/linux-x11/draw-linear-gradient/draw-linear-gradient.cpp
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<pthread.h>
+
