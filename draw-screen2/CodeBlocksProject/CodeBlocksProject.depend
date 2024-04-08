@@ -6,3 +6,10 @@
 	<stdio.h>
 	<string.h>
 
+1712600917 source:/home/dxb160/data/workspaces/cdev/linux-x11/draw-screen2/draw-screen2.cpp
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+

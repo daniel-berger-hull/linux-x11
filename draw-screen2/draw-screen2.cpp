@@ -81,9 +81,26 @@ bool initWindow()
 
   graphicContext=XCreateGC(displayPtr, window, 0,0);
 
+  //int displayHeight = XDisplayHeight(displayPtr,screen);
+  //int displayWidth = XDisplayWidth(displayPtr,screen);
 
 
   return true;
+}
+
+void drawScreen()
+{
+   RGBCode yellowCode = RGB(223,255,0);
+   RGBCode purpleCode = RGB(255,0,255);
+
+
+   //Yellow Rectangle
+    XSetForeground(displayPtr,graphicContext,yellowCode);
+    XFillRectangle( displayPtr, window, graphicContext, 0, 0, 50, 50 );
+
+    XSetForeground(displayPtr,graphicContext,purpleCode);
+    // X11 uses a very strange system of 1/64 of degree for the angle... So there are 360deg * 64 parts/deg...
+    XDrawArc(displayPtr, window, graphicContext, WIN_WIDTH/2, WIN_HEIGHT/2, 100,100,0,360*64);
 }
 
 

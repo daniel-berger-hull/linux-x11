@@ -1,3 +1,10 @@
+To Do:
+
+Draw random dots with different colors
+Draw a linear gradient
+Try replicate mosaic of htmlcolorcodes.com (From top left dark red to bottom right yellow)
+
+
 April 6
 =======
   Completed a simple mouse event handling on X11 windows. the appropriate mask has to be provided to the method 'XSelectInput' to work.
@@ -10,5 +17,11 @@ April 6
 April 7
 =======
 
-  Modified draw-screen to draw red line and write text on Mouse click.
+  Modified draw-screen to draw red line and write text on Mouse click. (with no segmentation fault)
+
+April 8
+=======
+   
+ Complteted the draw-screen2 project, and the drawing is done on the Expose event
+
 
